@@ -9,7 +9,8 @@ const GET_HERO_MESSAGE = "Here's your hero: ";
 const HELP_MESSAGE = 'You can say please fetch me a hero, or, you can say exit... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Enjoy the day...Goodbye!';
-const MORE_MESSAGE = 'Do you want more?'
+const MORE_MESSAGE = 'Do you want more?';
+const KELA_MESSAGE = 'Aiyoo Kela, Aiyoo kela.'
 const PAUSE = '<break time="0.3s" />'
 const WHISPER = '<amazon:effect name="whispered"/>'
 
@@ -64,7 +65,7 @@ app.post('/nesse', requestVerifier, function(req, res) {
     log("Session End")
   } else if (req.body.request.type === 'IntentRequest') {
     switch (req.body.request.intent.name) {
-      case 'AMAZON.YesIntent':
+      case 'YesIntent':
         res.json(getNewHero());
         break;
       case 'AMAZON.NoIntent':
@@ -72,6 +73,9 @@ app.post('/nesse', requestVerifier, function(req, res) {
         break;
       case 'AMAZON.HelpIntent':
         res.json(help());
+        break;
+      case 'AMAZON.HelloWorldIntent':
+        res.json(kela());
         break;
       default:
 
@@ -89,6 +93,13 @@ function stopAndExit() {
   var jsonObj = buildResponse(speechOutput, true, "");
   return jsonObj;
 }
+
+function kela() {
+
+    const speechOutput = KELA_MESSAGE
+    var jsonObj = buildResponse(speechOutput, true, "");
+    return jsonObj;
+  }
 
 function help() {
 
