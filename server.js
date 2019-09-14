@@ -74,7 +74,7 @@ app.post('/nesse', requestVerifier, function(req, res) {
       case 'AMAZON.HelpIntent':
         res.json(help());
         break;
-      case 'AMAZON.HelloWorldIntent':
+      case 'HelloWorldIntent':
         res.json(kela());
         break;
       default:
